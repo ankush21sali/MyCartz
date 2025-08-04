@@ -1,0 +1,307 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} Shop - MyCartz {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <h1 class="my-4 text-center">🛍️ Featured Products</h1>
+
+
+    <div class="container">
+        <h2 class="my-4">Electronics</h2>
+        <div class="row">
+
+            {% for product in electronics %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-sm" data-id="{{ product.product_id }}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}"
+                         style="height: 200px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.product_name }}</h5>
+                        <p class="card-text text-muted">₹{{ product.price }}</p>
+
+
+                        <div class="cart-actions d-flex align-items-center gap-2">
+                            <button class="btn btn-primary my-2 add-to-cart-btn"
+                                    data-product-id="{{ product.product_id }}"
+                                    data-product-name="{{ product.product_name }}"
+                                    data-product-price="{{ product.price }}"
+                                    style="background-color: #fca311;">
+                                Add to Cart
+                            </button>
+
+                            <div class="quantity-controls d-none align-items-center gap-2">
+                                <button class="btn btn-outline-secondary btn-sm minus-btn">−</button>
+                                <span class="quantity">1</span>
+                                <button class="btn btn-outline-secondary btn-sm plus-btn">+</button>
+                            </div>
+                            <a href="{% url 'Products' product.product_id %}">
+                                <button class="btn btn-primary my-2 px-4" style="background-color: #6c63ff;">View
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2 class="my-4">Men & Women Fashion</h2>
+        <div class="row">
+
+            {% for product in fashion %}
+
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-sm" data-id="{{ product.product_id }}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}"
+                         style="height: 200px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.product_name }}</h5>
+                        <p class="card-text text-muted">₹{{ product.price }}</p>
+
+
+                        <div class="cart-actions d-flex align-items-center gap-2">
+                            <button class="btn btn-primary my-2 add-to-cart-btn"
+                                    data-product-id="{{ product.product_id }}"
+                                    data-product-name="{{ product.product_name }}"
+                                    data-product-price="{{ product.price }}"
+                                    style="background-color: #fca311;">
+                                Add to Cart
+                            </button>
+                            <div class="quantity-controls d-none align-items-center gap-2">
+                                <button class="btn btn-outline-secondary btn-sm minus-btn">−</button>
+                                <span class="quantity">1</span>
+                                <button class="btn btn-outline-secondary btn-sm plus-btn">+</button>
+                            </div>
+                            <a href="{% url 'Products' product.product_id %}">
+                                <button class="btn btn-primary my-2 px-4" style="background-color: #6c63ff;">View
+                                </button>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2 class="my-4">Home Appliances</h2>
+        <div class="row">
+
+            {% for product in home_appliances %}
+
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-sm" data-id="{{ product.product_id }}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}"
+                         style="height: 200px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.product_name }}</h5>
+                        <p class="card-text text-muted">₹{{ product.price }}</p>
+
+
+                        <div class="cart-actions d-flex align-items-center gap-2">
+                            <button class="btn btn-primary my-2 add-to-cart-btn"
+                                    data-product-id="{{ product.product_id }}"
+                                    data-product-name="{{ product.product_name }}"
+                                    data-product-price="{{ product.price }}"
+                                    style="background-color: #fca311;">
+                                Add to Cart
+                            </button>
+                            <div class="quantity-controls d-none align-items-center gap-2">
+                                <button class="btn btn-outline-secondary btn-sm minus-btn">−</button>
+                                <span class="quantity">1</span>
+                                <button class="btn btn-outline-secondary btn-sm plus-btn">+</button>
+                            </div>
+                            <a href="{% url 'Products' product.product_id %}">
+                                <button class="btn btn-primary my-2 px-4" style="background-color: #6c63ff;">View
+                                </button>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2 class="my-4">Sports & fFitness</h2>
+        <div class="row">
+
+            {% for product in sports_and_fitness %}
+
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-sm" data-id="{{ product.product_id }}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}"
+                         style="height: 200px; object-fit: contain;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.product_name }}</h5>
+                        <p class="card-text text-muted">₹{{ product.price }}</p>
+
+
+                        <div class="cart-actions d-flex align-items-center gap-2">
+                            <button class="btn btn-primary my-2 add-to-cart-btn"
+                                    data-product-id="{{ product.product_id }}"
+                                    data-product-name="{{ product.product_name }}"
+                                    data-product-price="{{ product.price }}"
+                                    style="background-color: #fca311;">
+                                Add to Cart
+                            </button>
+                            <div class="quantity-controls d-none align-items-center gap-2">
+                                <button class="btn btn-outline-secondary btn-sm minus-btn">−</button>
+                                <span class="quantity">1</span>
+                                <button class="btn btn-outline-secondary btn-sm plus-btn">+</button>
+                            </div>
+                            <a href="{% url 'Products' product.product_id %}">
+                                <button class="btn btn-primary my-2 px-4" style="background-color: #6c63ff;">View
+                                </button>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Helper: Save cart and refresh UI
+    function updateCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartSummaryDisplay();
+    }
+
+    // Update cart count badge
+    function updateCartSummaryDisplay() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const countElement = document.getElementById("cart-count");
+      if (countElement) {
+        countElement.innerText = count;
+      }
+    }
+
+    // Update quantity UI for all cards
+    function syncUI() {
+      document.querySelectorAll(".product-card").forEach(card => {
+        const productId = parseInt(card.dataset.id);
+        const product = cart.find(p => p.id === productId);
+
+        const addBtn = card.querySelector(".add-to-cart-btn");
+        const qtyControls = card.querySelector(".quantity-controls");
+        const qtyText = card.querySelector(".quantity");
+
+        if (product) {
+          addBtn.classList.add("d-none");
+          qtyControls.classList.remove("d-none");
+          qtyText.textContent = product.quantity;
+        } else {
+          addBtn.classList.remove("d-none");
+          qtyControls.classList.add("d-none");
+          qtyText.textContent = 1;
+        }
+      });
+    }
+
+    // ADD TO CART
+    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        const card = button.closest(".card");
+        const productId = parseInt(button.dataset.productId);
+        const productName = button.dataset.productName;
+        const productPrice = parseFloat(button.dataset.productPrice);
+
+        let existing = cart.find(p => p.id === productId);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({
+            id: productId,
+            name: productName,
+            price: productPrice,
+            quantity: 1
+          });
+        }
+
+        updateCart();
+        syncUI();
+      });
+    });
+
+    // PLUS BUTTON
+    document.querySelectorAll(".plus-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        const card = button.closest(".card");
+        const productId = parseInt(card.querySelector(".add-to-cart-btn").dataset.productId);
+
+        let existing = cart.find(p => p.id === productId);
+        if (existing) {
+          existing.quantity += 1;
+        }
+
+        updateCart();
+        syncUI();
+      });
+    });
+
+    // MINUS BUTTON
+    document.querySelectorAll(".minus-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        const card = button.closest(".card");
+        const productId = parseInt(card.querySelector(".add-to-cart-btn").dataset.productId);
+
+        let existingIndex = cart.findIndex(p => p.id === productId);
+        if (existingIndex > -1) {
+          cart[existingIndex].quantity -= 1;
+          if (cart[existingIndex].quantity <= 0) {
+            cart.splice(existingIndex, 1);
+          }
+        }
+
+        updateCart();
+        syncUI();
+      });
+    });
+
+    // Initialize all product cards with data-id
+    document.querySelectorAll(".card").forEach(card => {
+      const productId = card.querySelector(".add-to-cart-btn").dataset.productId;
+      card.classList.add("product-card");
+      card.setAttribute("data-id", productId);
+    });
+
+    updateCartSummaryDisplay();
+    syncUI();
+  });
+</script>
+
+
+
+{% endblock %}

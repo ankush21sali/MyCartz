@@ -1,0 +1,174 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Checkout - MyCartz{% endblock %}
+
+{% block content %}
+
+{% if request.GET.submitted %}
+<div class="alert alert-success"> 🛍️ Order placed successfully!</div>
+{% endif %}
+
+
+<div class="container">
+
+    <!-- Billing Form -->
+    <div class="form-section">
+        <h4 style="text-align: center; text-decoration: underline;" class="my-3">Billing Information</h4>
+
+        <form method="post" id="order-form"> {% csrf_token %}
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="first_name" id="firstName" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" id="lastName" required>
+                </div>
+
+                <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+
+                <div class="col-12">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" name="address" id="address" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" name="city" id="city" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" name="state" id="state" required>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="pincode" class="form-label">Pincode</label>
+                    <input type="text" class="form-control" name="pincode" id="pincode" required>
+                </div>
+
+            </div>
+
+    </div>
+
+    <div class="p-3 border rounded bg-light my-4">
+        <!-- Payment Method Selection -->
+<div class="mt-4">
+  <h5 class="mb-3">Payment Method</h5>
+
+  <div class="form-check mb-2">
+    <input class="form-check-input" type="radio" name="payment_method" id="cod" value="COD" checked>
+    <label class="form-check-label" for="cod">
+      Cash on Delivery (COD)
+    </label>
+  </div>
+
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="radio" name="payment_method" id="upi" value="UPI">
+    <label class="form-check-label" for="upi">
+      UPI / QR Code (Coming Soon)
+    </label>
+  </div>
+</div>
+    </div>
+
+
+    <!-- Order Summary -->
+    <div class="summary-section mt-5">
+        <h5 class="mb-3">Order Summary</h5>
+        <div id="order-summary" class="mb-3"></div>
+
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Subtotal</span>
+                <strong id="subtotal">₹0</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Shipping</span>
+                <strong id="shipping">₹0</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total</span>
+                <strong id="total">₹0</strong>
+            </li>
+        </ul>
+
+        <!-- Payment Button -->
+        <input type="hidden" name="cart_data" id="cart-data">
+        <button type="submit" class="btn btn-success my-2 px-4" style="background-color: #6c63ff;" >Place Order</button>
+        </form>
+
+
+    </div>
+</div>
+
+<!-- Script to Render Cart -->
+<script>
+  function renderOrderSummary() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let summary = document.getElementById("order-summary");
+    let subtotalEl = document.getElementById("subtotal");
+    let shippingEl = document.getElementById("shipping");
+    let totalEl = document.getElementById("total");
+
+    if (!summary || !subtotalEl || !shippingEl || !totalEl) return;
+
+    summary.innerHTML = "";
+    let subtotal = 0;
+
+    cart.forEach(product => {
+      let itemTotal = product.price * product.quantity;
+      subtotal += itemTotal;
+
+      summary.innerHTML += `
+        <div>
+          <strong>${product.name}</strong><br>
+          Qty: ${product.quantity} × ₹${product.price}<br>
+          Item Total: ₹${itemTotal}<br><hr>
+        </div>
+      `;
+    });
+
+    subtotalEl.textContent = `₹${subtotal}`;
+    shippingEl.textContent = "₹50";
+    totalEl.textContent = `₹${subtotal + 50}`;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    renderOrderSummary();
+
+    const form = document.getElementById("order-form");
+    const cartInput = document.getElementById("cart-data");
+
+    if (form && cartInput) {
+      form.addEventListener("submit", function () {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cartInput.value = JSON.stringify(cart);
+      });
+    }
+
+    if (window.location.search.includes("submitted=true")) {
+      localStorage.removeItem("cart");
+      localStorage.removeItem("cartCount");
+
+
+      // Optional: redirect home
+      setTimeout(() => {
+        window.location.href = "{% url 'ShopHome' %}";
+      }, 2000);
+    }
+  });
+</script>
+
+
+
+
+
+{% endblock %}

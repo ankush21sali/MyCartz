@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} Contact - MyCartz {% endblock %}
+
+
+{% block content %}
+{% if submitted %}
+    <div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+        ✅ Thank you! Your message has been received.
+    </div>
+{% endif %}
+
+
+<div class="container">
+    <h1>Contact us</h1>
+
+    <form action="{% url 'ContactUs' %}" method="post"> {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone number" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="desc" class="form-label">How We Can Help You?</label>
+            <textarea class="form-control" id="desc" name="desc" rows="3" required></textarea>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" style="background-color: #fca311;" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

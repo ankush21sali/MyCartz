@@ -1,0 +1,73 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} About - MyCartz {% endblock %}
+
+{% block css %}
+a {
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+
+a:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(108, 99, 255, 0.4);
+}
+{% endblock %}
+
+{% block content%}
+
+<div class="container">
+    <div class="about-section">
+        <h2 class="about-heading text-center mb-4">About <span class="highlight">MyCartz</span></h2>
+        <p class="lead text-center">
+            Welcome to <span class="highlight">MyCartz</span> – Your one-stop online shopping destination!
+        </p>
+        <hr class="my-4">
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h4>Who We Are</h4>
+                <p>
+                    MyCartz is a growing eCommerce platform built to deliver a smooth and enjoyable shopping experience.
+                    We bring together a wide range of quality products from electronics to fashion, all in one place.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Our Mission</h4>
+                <p>
+                    To provide high-quality, affordable products with a customer-first approach. We focus on fast
+                    delivery, easy returns, and secure transactions to make your shopping experience safe and
+                    satisfying.
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h4>Why Choose Us?</h4>
+                <ul>
+                    <li>🚚 Fast & Reliable Shipping</li>
+                    <li>✅ Quality Products</li>
+                    <li>💳 Secure Payment Options</li>
+                    <li>📞 Friendly Customer Support</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h4>Our Vision</h4>
+                <p>
+                    To become India’s most customer-centric online marketplace, empowering buyers with convenience and
+                    trust through innovation and technology.
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'ShopHome' %}" style="background-color: #6c63ff;" class="btn btn-success px-5">Go to
+                Home</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
